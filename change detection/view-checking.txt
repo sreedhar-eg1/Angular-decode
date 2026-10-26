@@ -1,0 +1,37 @@
+Process 1: View Checking
+        Syncronization of the component view with the data model
+
+Process 2: Re-run process 1
+        Automatically re-execute the process 1 when application state might change
+
+        It can be easily done by configuration in main.ts file
+
+        platformBrowserDynamic().bootstrapModule(AppModule, {ngZone: 'noop'})
+
+---------------------------------------------------------------------------------------
+
+with {ngZone: 'noop'}, we are telling angular to not detect any change detection
+    So in component class, if any data model changes, it wont be reflected on our View
+
+    We need to manually run the change detection here
+
+    we can make use of ChangeDetectorRef
+
+    ....
+    constructor(private cdr: ChangeDetectorRef) {
+        setTimeout(() => {
+            this.topicName = 'Zone JS in Angular'
+            console.log('Topic name changed to:', this.topicName)
+            this.cdr.detectChanges()
+        }, 3000)
+    }
+    ...
+
+
+    We need to call this this.cdr.detectChanges() manually in the place wherever the view get changed
+
+Once detectChanges() is called, angular updates the view
+    This change detection not only happens to the current component view where we called detectChanges()
+    It triggers the child component too
+
+Even though we disabled change detection, on initial render angular Automatically detect changes and render view
