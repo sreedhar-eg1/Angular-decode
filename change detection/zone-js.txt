@@ -1,0 +1,11 @@
+We can manually detect changes using ChangeDetectorRef
+    But angular has zone js to detect the state changes Automatically
+    In recent standlaone approach, zone js has been removed
+
+Most of all the asynchronous operation changes the state
+    So we need an mechanism that inform this changes
+        Angular has this mechanism enabled by default and it is ZONE JS
+
+
+ZONE JS make use of the technique called Monkey Patching to notify angular that some asynchronous operation has been 
+completed
