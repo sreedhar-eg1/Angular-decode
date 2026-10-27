@@ -6,9 +6,17 @@ import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.
   standalone: true,
   imports: [WeatherWidgetComponent],
   template: `
-    <weather-widget></weather-widget>
+    <weather-widget [contentTemplate]="alternateContent"></weather-widget>
     <ng-template #alternateTemplate>
       <div class="alt-weather">Today's weather</div>
+    </ng-template>
+    <!-- <ng-template #alternateContent let-state>  => In case of $implicit variable used-->
+    <ng-template #alternateContent let-state="state">
+      <div>
+        <span>🌡️ {{state.data.temperature}}</span>
+        <span>{{ state.data.skyCondition === "sunny" ? "☀️" : "☁️" }}</span>
+        <span>🍃 {{state.data.windspeed}}</span>
+      </div>
     </ng-template>
   `,
   styles: [`

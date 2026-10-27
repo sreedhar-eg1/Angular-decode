@@ -27,7 +27,10 @@ import { NgTemplateOutlet } from "@angular/common";
       </ng-template>
     </div>
     <div class="widget-content">
-      <ng-container [ngTemplateOutlet]="contentTemplate || defaultWidgetContent"></ng-container>
+      <ng-container
+        [ngTemplateOutlet]="contentTemplate || defaultWidgetContent"
+        [ngTemplateOutletContext]="{ state: state }"
+      ></ng-container>
       <ng-template #defaultWidgetContent>
         <div class="sky-condition">
           {{ state.data.skyCondition === "sunny" ? "☀️" : "☁️" }}
@@ -36,8 +39,14 @@ import { NgTemplateOutlet } from "@angular/common";
       </ng-template>
     </div>
     <div class="widget-actions">
-      <button (click)="actions.reload()">Reload</button>
-      <button (click)="actions.copyData()">Copy Info</button>
+      <ng-container
+        [ngTemplateOutlet]="actionTemplate || defaultActionContent"
+        [ngTemplateOutletContext]="{ $implicits: actions }"
+      ></ng-container>
+      <ng-template #defaultActionContent>
+        <button (click)="actions.reload()">Reload</button>
+        <button (click)="actions.copyData()">Copy Info</button>
+      </ng-template>
     </div>
   `,
   styleUrls: ["./weather-widget.component.css"],
@@ -45,7 +54,8 @@ import { NgTemplateOutlet } from "@angular/common";
 })
 export class WeatherWidgetComponent implements AfterViewInit {
   @Input() headerTemplate!: TemplateRef<any>;
-  @Input() contentTemplate!: TemplateRef<any>;
+  @Input() contentTemplate!: TemplateRef<WidgetState>;
+  @Input() actionTemplate!: TemplateRef<any>;
 
   state = inject(WidgetState);
   actions = inject(WidgetActions);

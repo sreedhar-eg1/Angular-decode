@@ -7,3 +7,48 @@ NgTempletOutlet
     Once it has been imported, we can use it in our template, and the value assigned for this directive in the 
     template should be the template reference
         <ng-container [ngTemplateOutlet]="defaultWidgetHeader"></ng-container>
+
+
+---------------------------------------------------------
+If we make use of @Input() decorator to pass the template reference
+    Then while passing the template reference fom the parent component, we cannot access any data from the component
+
+    We can solve this by making use of Template Context
+    <ng-container
+        [ngTemplateOutlet]="contentTemplate || defaultWidgetContent"
+        [ngTemplateOutletContext]="{ state: state }"
+      ></ng-container>
+      <ng-template #defaultWidgetContent>
+        <div class="sky-condition">
+          {{ state.data.skyCondition === "sunny" ? "☀️" : "☁️" }}
+        </div>
+        <div class="temperature">{{ state.data.temperature }}°C</div>
+      </ng-template>
+
+    With the help of this, our template have access to the state
+
+So what it does means, in one component we are registering a placeholder where our template will be rendered
+    In some cases that template requires a dynamic data fom the class, and template would be coming from other
+    component using Input decorator
+
+    So to have this dynamic data in the component where this component is consumed, we need to use [ngTemplateOutletContext]
+
+        <ng-container
+            [ngTemplateOutlet]="contentTemplate || defaultWidgetContent"
+            [ngTemplateOutletContext]="{ state: state }"
+        ></ng-container>
+
+    Here we have set variable state, so to access it in other component, we need to make use of let-<any-name>="state"
+        <ng-template #referenceVariable let-state="state">...</ng-template>
+
+    But if you make use of $implicit, then we dont need to use let-$implicit to access it, because it will be consider as
+    a default value
+
+        <ng-container
+            [ngTemplateOutlet]="contentTemplate || defaultWidgetContent"
+            [ngTemplateOutletContext]="{ $implicit: state }"
+        ></ng-container>
+
+         <ng-template #referenceVariable let-state>...</ng-template>
+
+
