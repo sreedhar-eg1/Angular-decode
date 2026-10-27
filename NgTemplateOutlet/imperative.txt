@@ -1,0 +1,25 @@
+How to create Embedded views in angular?
+    To create embedded view, we need two things
+        1. Container => the place where this view need to be rendered
+        2. template => the view that need to be rendered
+
+
+    The container can be any HTML Node
+        Ex: <div #container></div>
+
+                we have added local reference variable to an element, which will allow us to access this element
+
+
+<div #container></div>
+<ng-template #defaultWidgetHeader>
+    <div class="widget-title">Weather Forecast</div>
+    <div class="widget-sub-title">Current weather in your location</div>
+</ng-template>
+
+While creating embeddedView, ng-template content will be placed next to #container ref but not inside it
+    So you see empty div in the DOM while we inspect
+
+    If we dont want to have empty div, replace it with ng-Container
+    <ng-container #container></ng-container>
+
+The above steps are the imperative approach, we exactly specified the steps what to do
