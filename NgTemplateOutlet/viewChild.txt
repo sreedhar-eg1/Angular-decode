@@ -1,0 +1,28 @@
+@ViewChild('container', {static: true}) container: any;
+
+    With this we get reference to the Element, but if we need reference to the view, then we need to specify how we want
+    to read it
+
+    @ViewChild('container', {static: true, read: ViewContainerRef}) container: any;
+
+
+@ViewChild('container', {static: true}) container: any; => will return with type ElementRef
+@ViewChild('container', {static: true, read: ViewContainerRef}) container: any; => will return with type ViewContainerRef
+
+
+
+------------------------------
+
+@ViewChild('container', { static: true }) — gets the element or directive instance associated with #container,
+ depending on what Angular matches.
+
+Accessing a DOM element.
+Reading or modifying element properties.
+Integrating with third-party libraries that require a DOM element.
+
+
+
+@ViewChild('container', { static: true, read: ViewContainerRef }) — explicitly asks Angular for the 
+ViewContainerRef associated with that element.
+
+A ViewContainerRef lets you create, insert, move, and remove Angular views dynamically.
