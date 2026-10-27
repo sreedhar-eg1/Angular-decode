@@ -7,6 +7,9 @@ import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.
   imports: [WeatherWidgetComponent],
   template: `
     <weather-widget></weather-widget>
+    <ng-template #alternateTemplate>
+      <div class="alt-weather">Today's weather</div>
+    </ng-template>
   `,
   styles: [`
     :host {

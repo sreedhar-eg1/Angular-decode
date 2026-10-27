@@ -1,0 +1,9 @@
+NgTempletOutlet
+    To make use of this directive firstle we need to import it from angular/core
+        ...
+        imports: [NgTemplateOutlet]
+        ...
+
+    Once it has been imported, we can use it in our template, and the value assigned for this directive in the 
+    template should be the template reference
+        <ng-container [ngTemplateOutlet]="defaultWidgetHeader"></ng-container>
