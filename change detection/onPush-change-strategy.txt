@@ -1,0 +1,50 @@
+OnPush Change Detection Strategy
+
+    How change detection works in angular by default?
+        If any changes occur (i,e by any event or any changes in the data model) 
+            Zone JS notify about the changes to the angular and update the view
+
+    We can configure changeDetection strategy to OnPush to any of the component in the @Component() decorator
+
+        ...
+        changeDetection: ChangeDetectionStrategy.onPush()
+        ...
+
+    With the above, the view won't get updated anymore
+        How onPush work?
+            So whenever any changes occur, dont update the view untill you get a signal to update it
+
+    How to signal that update the view?
+        using markForCheck()
+
+        constructor(private cdr: ChangeDetectionRef){}
+
+        ...
+        cdr.markForCheck()
+        ...
+
+
+detectCheck() vs markForCheck() difference
+    Both are different
+
+    markForCheck => doesnot trigger view checking for the component in which it has been used or for its children
+                    It just mark the component as dirty for next change detection cycle
+                    This next change detection cycle will be triggered by zone js
+
+                    Addition to the current component, it mark the parent and ancestor component as dirty
+
+
+We dont need to always set markforCheck()
+    angular does this in few cases
+        1. when we update something through click event
+        2. when the property got changed
+        3. when we use async pipe
+
+
+In any changes occur in one of the component, Zone JS trigger the view checking from the root Component
+    It check the entire component tree only if the change detection strategy is set to default
+
+    By if any one of the component has onpush change detection strategy, and while view checking if the component
+    with onPush is not dirty (marked for view checking) then it wont check that component and its children
+
+    It will check only if the component is marked as dirty (for onpush configured component)
