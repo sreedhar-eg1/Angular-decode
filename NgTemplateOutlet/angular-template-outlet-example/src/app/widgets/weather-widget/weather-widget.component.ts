@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   inject,
+  Injector,
   Input,
   OnInit,
   TemplateRef,
@@ -42,6 +43,7 @@ import { NgTemplateOutlet } from "@angular/common";
       <ng-container
         [ngTemplateOutlet]="actionTemplate || defaultActionContent"
         [ngTemplateOutletContext]="{ $implicits: actions }"
+        [ngTemplateOutletInjector]="injector"
       ></ng-container>
       <ng-template #defaultActionContent>
         <button (click)="actions.reload()">Reload</button>
@@ -59,6 +61,7 @@ export class WeatherWidgetComponent implements AfterViewInit {
 
   state = inject(WidgetState);
   actions = inject(WidgetActions);
+  injector = inject(Injector)
 
   // @ViewChild("container", { read: ViewContainerRef })
   // container!: ViewContainerRef;

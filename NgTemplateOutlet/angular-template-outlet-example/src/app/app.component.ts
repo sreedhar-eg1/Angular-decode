@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.component';
+import { WeatherCustomActionComponent } from './widgets/weather-custom-action/weather-custom-action.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [WeatherWidgetComponent],
+  imports: [WeatherWidgetComponent, WeatherCustomActionComponent],
   template: `
-    <weather-widget [contentTemplate]="alternateContent"></weather-widget>
+    <weather-widget [contentTemplate]="alternateContent" [actionTemplate]="alternateActions"></weather-widget>
     <ng-template #alternateTemplate>
       <div class="alt-weather">Today's weather</div>
     </ng-template>
@@ -17,6 +18,9 @@ import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.
         <span>{{ state.data.skyCondition === "sunny" ? "☀️" : "☁️" }}</span>
         <span>🍃 {{state.data.windspeed}}</span>
       </div>
+    </ng-template>
+    <ng-template #alternateActions>
+      <app-weather-custom-action></app-weather-custom-action>
     </ng-template>
   `,
   styles: [`

@@ -52,3 +52,16 @@ So what it does means, in one component we are registering a placeholder where o
          <ng-template #referenceVariable let-state>...</ng-template>
 
 
+
+---------------------------------------------------------
+ngTemplateOutletInjector
+
+    If we want to allow the component inside the ng-template to have access to the injection service, we can make use of 
+    ngTemplateOutletInjector
+
+
+-----------------------------------------------------------
+Disadvantage of using ngTemplateOutlet directive
+    When we pass some variable with value, we wont get correct type support when we try to use it in out template
+
+
