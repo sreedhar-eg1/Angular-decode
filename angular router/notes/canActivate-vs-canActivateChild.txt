@@ -1,0 +1,56 @@
+CanActivate
+    It is one of the type of gaurd (basically gaurd the route)
+
+    export class AuthenticationGuard implements CanActivate {}
+
+Basically gaurd is a service but it implements the respective gaurd that we plan to use
+    In above schematic we extends the CanActivate gaurd
+
+        ...
+        canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapShot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | UrlTree | boolean {
+            return true
+        }
+        ...
+
+
+If the route is guarded using canActivate, and the route has children
+    canActivate wont get triggered when we switch between the child route
+
+
+One way to solve this is by adding the same gaurd to all the children path/route
+    If we have dozen of children then we need to add the guard to each of its children
+
+
+The better way to handle this is by using canActivateChild
+    export class PermissionGuard implements CanActivateChild {
+        canActivateChild(state: ActivatedRouteSnapshot, route: RouterStateSnapShot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | UrlTree | boolean {
+            return true
+        }
+    }
+
+    ...
+    {
+        path: 'admin',
+        canActivateChild: [PermissionGuard],
+        children: [
+            {path: '', component: Comp},
+        ]
+    }
+    ...
+
+With the help of canActivateChild, when we switch between the child route, the guard gets executed
+
+For a single route, we can make use of both canActivate and canActivateChild
+
+    {
+        path: 'admin',
+        canActivate: [AuthenticationGuard],
+        canActivateChild: [PermissionGuard],
+        component: AdminComponent,
+        children: [
+            {path: 'comp', component: Comp},
+        ]
+    }
+
+Now when the AdminComponent is rendered, AuthenticationGuard will get executed and when the child route is accessed
+PermissionGuard would get executed
