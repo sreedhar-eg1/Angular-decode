@@ -1,0 +1,48 @@
+If we have same resolve or canactivate method across multiple route, we have to duplicate it across multiple route
+
+To solve this we can make use of empty path, component less route
+
+    const APP_ROUTES: ROUTE = [
+        {path: '', component: HomeComponent},
+        {
+            path: 'settings', 
+            component: SettingsComponent, 
+            resolve: {() => inject(AuthService).authUser$}, 
+            canActivate: [() => inject(AuthService).isAuthenticated$, () => inject(PermissionService).isProfileOwner$]
+        },
+        {
+            path: 'billings', 
+            component: BillingsComponent, 
+            resolve: {() => inject(AuthService).authUser$}, 
+            canActivate: [() => inject(AuthService).isAuthenticated$, () => inject(PermissionService).isAdmin$]
+        }
+    ]
+
+
+    To
+
+    const APP_ROUTES: ROUTE = [
+        {path: '', component: HomeComponent},
+        {
+            path: '',
+            resolve: {() => inject(AuthService).authUser$},
+            canActivate: [() => inject(AuthService).isAuthenticated$]
+            children: [
+                {
+                    path: 'settings', 
+                    component: SettingsComponent, 
+                    canActivate: [() => inject(PermissionService).isProfileOwner$]
+                },
+                {
+                    path: 'billings', 
+                    component: BillingsComponent, 
+                    canActivate: [() => inject(PermissionService).isAdmin$]
+                }
+            ]
+        }
+    ]
+
+    So when we switch between child path, i.e settings and billings path the canActivate wont get executed
+    But when we come from other route, it get executed ""(HomeComponent) to ("settings")
+
+    If we want execute when switching the children path, need to use canActivateChild instead of canActivate
