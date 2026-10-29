@@ -17,3 +17,15 @@ export class LoadGuard implements CanLoad {
         canLoad: [LoadGuard]
     }
     ...
+
+
+----------------------------------------
+
+Preloading Strategy
+
+    In @NgModule(), while importing RouterModule we can pass some options
+
+    ...
+    import: [RouterModule.forRoot(routes, {
+        preloadingStrategy: CustomStrategy/PreloadAllModule
+    })]
