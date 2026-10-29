@@ -1,0 +1,22 @@
+Before we some route, if we want to check something, then we can make use of canDeactivate guard
+
+UseCase:
+    We have a huge form and we have filled some field, but if we try to go back to some other route without submitting
+    the form, we need to prompt the user asking if they really need to leave without submitting the form
+
+structure of the canDeactivate guard
+
+export class FormGuard implements CanDeactivate<unknown> {
+    canDeactivate(
+        component: unknown, 
+        currentRoute: ActivatedRouteSnapshot, 
+        currentState: RouterStateSnapshot,
+        nextState?: RouterStaeSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | UrlTree | boolean {
+            return true
+        }
+}
+
+
+Parameter
+    component
+        To which route component that we are going to attach canDeactivate guard
