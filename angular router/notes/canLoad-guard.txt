@@ -1,0 +1,19 @@
+canLoad
+    This guard works only with lazy-loaded modules and allows us to prevent loading of some lazy module 
+    if it is necessary
+
+for lazy loaded module, canActivate guard dont work
+
+export class LoadGuard implements CanLoad {
+    canLoad(route: Route, segments: UrlSegments[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | UrlTree | boolean {
+        return true
+    }
+}
+
+    ...
+    {
+        path: 'admin',
+        loadChildren: () => import('./module').then(m => m.Module),
+        canLoad: [LoadGuard]
+    }
+    ...
