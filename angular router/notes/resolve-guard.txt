@@ -1,0 +1,22 @@
+It would be great to have some data prefetched before the respective route component is rendered
+    This can be achieved using the resolver
+
+    To generate a resolver using CLI
+        ng g r <resolver-name>
+
+        ng g r <resolver-name> --functional=true => to generate function based resolver, not class based
+
+Structure
+export class ResolverName implements Resolve<boolean> {
+    ...
+}
+
+
+We can access the resolved data from the data parameter present in the route: ActivatedRoute
+    ...
+    constructor(private activatedRoute: ActivatedRoute) {}
+
+    ngOnInit(): void {
+        this.user$ = this.activatedRoute.data.pipe(map((data) => data?.user));
+    }
+    ...
