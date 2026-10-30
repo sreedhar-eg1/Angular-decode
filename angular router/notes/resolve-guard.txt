@@ -20,3 +20,8 @@ We can access the resolved data from the data parameter present in the route: Ac
         this.user$ = this.activatedRoute.data.pipe(map((data) => data?.user));
     }
     ...
+
+
+We can have multiple resolver to a single route
+Child route wont get access to the resolver data
+    Workaround: this.activatedRoute.parent.data.....
