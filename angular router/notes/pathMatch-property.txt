@@ -1,0 +1,16 @@
+Angular – pathMatch Property
+pathMatch determines how Angular matches the URL against a route's path.
+
+It supports two values:
+1. full – The entire URL path must match the configured route path.
+2. prefix – Only the beginning of the URL path needs to match the configured route path. (Default value)
+
+const routes: Routes = [
+  { path: '', redirectTo: 'users', pathMatch: 'full' },
+  { path: 'users', component: UsersComponent }
+];
+
+Important points:
+- Use pathMatch: 'full' for empty-path redirects.
+- Using prefix with an empty path can match every URL, potentially causing infinite redirect loops.
+- prefix is the default value if pathMatch is not specified.
