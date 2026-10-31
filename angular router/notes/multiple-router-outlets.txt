@@ -1,0 +1,5 @@
+We can have named outlet to incorporate multiple router
+
+Angular allow you to manage complex router states, allowing you to fork your router into multiple active paths 
+which are independent from each other. It might be useful to display different dialog windows, sidebars 
+and other layouts which should depend on your router state
