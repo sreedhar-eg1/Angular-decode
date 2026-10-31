@@ -3,3 +3,41 @@ We can have named outlet to incorporate multiple router
 Angular allow you to manage complex router states, allowing you to fork your router into multiple active paths 
 which are independent from each other. It might be useful to display different dialog windows, sidebars 
 and other layouts which should depend on your router state
+
+
+--------------------------------------------------------------
+router-outlet
+    <router-outlet></router-outlet>
+    The place where our routed component renders
+
+    router outlet has a property called "name"
+        with this property, we can name the router-outlet
+
+            ...
+            <router-outlet name="details"></router-outlet>
+            ...
+
+        In the route file, we need to specify which outlet should be used for that particular path
+
+            ...
+            {path: 'users', component: UserComponent, outlet: "details", children: [...]}
+            ...
+
+
+For named router outlet,
+    the URL will be like .../users(details:user/1)
+    details is the name of the outlet followed by the path
+
+    This can be achieved like below
+        ...[routerLink]=["", {outlets: {"details": ['user', user.id]}}]...
+
+            first empty string in the array means, stay in the current route itself
+
+        If we want to remove the named outlet from the URL, then we can pass null to the outlet
+            ...[routerLink]=["", {outlets: {"details": null}}]...
+
+
+We can event in router-outlet
+    (activate) and (deactivate)
+        If the route is active, then (activate) event triggers
+        If the route is deactive, then (deactivate) event triggers
