@@ -11,6 +11,8 @@ import { UserSidebarComponent } from "./user/user-sidebar.component";
 import { UserDetailsComponent } from "./user/user-details.component";
 import { PhotosDetailsComponent } from "./photos/photos-details.component";
 import { PhotosSidebarComponent } from "./photos/photos-sidebar.component";
+import { TitleStrategy } from "@angular/router";
+import { CustomTitleStrategyService } from "./custom-title-strategy.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { PhotosSidebarComponent } from "./photos/photos-sidebar.component";
     MatButtonModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{
+    provide: TitleStrategy,
+    useClass: CustomTitleStrategyService
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

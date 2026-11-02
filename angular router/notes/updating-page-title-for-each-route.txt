@@ -29,3 +29,11 @@ How to create global strategy?
     We need to create a service and extend that service class with TitleStrategy
 
     Once the custom logic is added, we need to provide the service globally
+
+
+---------------------------------------
+How does the global title strategy work with named outlet?
+    For practical implementation check angular named router outlet 
+
+    By default primary route title will be set
+        here also we need to implement custom title strategy to solve the problem
