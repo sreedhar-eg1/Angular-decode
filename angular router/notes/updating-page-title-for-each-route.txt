@@ -14,3 +14,6 @@ the title should be updated
                 title: "Home"
             }
         ]
+        ...
+
+But hardcoding this title to a static value is not a good solution for the use case where we need dynamic title
