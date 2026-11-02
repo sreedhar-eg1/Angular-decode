@@ -17,3 +17,15 @@ the title should be updated
         ...
 
 But hardcoding this title to a static value is not a good solution for the use case where we need dynamic title
+
+
+-----------------------------------
+
+If we want to add a prefix to every route in your application
+    Adding prefix to all the route manually is a very bad practice
+    WE can create a global strategy to solve this
+
+How to create global strategy?
+    We need to create a service and extend that service class with TitleStrategy
+
+    Once the custom logic is added, we need to provide the service globally
