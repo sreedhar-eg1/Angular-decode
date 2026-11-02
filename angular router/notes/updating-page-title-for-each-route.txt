@@ -1,0 +1,16 @@
+Angular simplifies how we can update the title of our pages.
+
+Every Angular Route has a dedicated property called "title" where you can define a title or the resolver that can 
+perform some logic for more complex cases
+
+Also, you can specify a global strategy that extends the default title strategy and implements your own way of how
+the title should be updated
+
+        ...
+        const routes: Routes  = [
+            {
+                path: "",
+                component: HomeComponent,
+                title: "Home"
+            }
+        ]
