@@ -21,3 +21,21 @@ Once the lazy loaded module is loaded, we can recognize the route
 
 After this only, activate route snapshot will be created
     In this phase, we can resolve data if resolver added and mount component
+
+
+UseCase 1:
+    We need to have a same path, but based on some condution need to render different component
+
+useCase 2:
+    Can make use of this guard to disable one route and use the other route where both route should have same path
+    ...
+    { path: 'dashboard', component: UserDashboardComponent, canMatch: [() => false] },
+    { path: 'dashboard', component: AdminDashboardComponent },
+    ...
+
+    First path wont be rendered instead the second one will be rendered
+
+
+-------------------------
+canMatch guard is being called during the "Route Recognizing" and "Applying Redirects" steps, so 
+that's why the canMatch will be called 2 times
