@@ -1,0 +1,23 @@
+CanMatch guard in Angular router that can help you to 'skip' routes depending on some certain conditions
+
+When we need to reach certain route, firstly we need to have the path for that route registered on our route
+file
+
+        ...
+        {
+            path: "dashboard",
+            component: DasboardComponent
+        }
+        ...
+
+    Lets call it "ROUTE MATCHING" process
+
+So to resolve the route, we need a component. If it is a lazy loaded module then we need to load the module first
+    Lets call it "ROUTE CONFIG LOADING" process
+
+
+Once the lazy loaded module is loaded, we can recognize the route
+    Lets call it "ROUTE RECOGNIZED" process
+
+After this only, activate route snapshot will be created
+    In this phase, we can resolve data if resolver added and mount component
