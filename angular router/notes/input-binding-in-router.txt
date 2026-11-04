@@ -1,0 +1,42 @@
+Component Input binding in Angular Router
+    Modern angular allows us to bind some params in the route state to input property
+
+    ...
+    {
+        path: SomeComponent,
+        data: {
+            description: "Some description"
+        }
+    }
+    ...
+
+    ...
+    export class SomeComponent {
+        @Input() description: string = ""
+    }
+    ...
+
+So from route, we pass some data using data property, we can access it from our component using @Input() decorator
+
+
+But this feature is not enabled by default
+    We need to enable it to use this feature
+    withComponentInputBinding() passed to provideRouter, we can enable it
+
+    so in app config file, 
+        ...
+        providers: [
+            provideRouter(routes, withComponentInputBinding())
+        ]
+        ...
+
+The above approach is to enable it for standalone architecture
+To enable it for NgModule approach check the below config
+
+@NgModule({
+    imports: [
+        RouterModule.forRoot(routes, {
+            bindToComponentInputs: true
+        })
+    ]
+})
