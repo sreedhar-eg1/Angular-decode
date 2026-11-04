@@ -3,8 +3,10 @@ Component Input binding in Angular Router
 
     ...
     {
-        path: SomeComponent,
+        path: "demo/:entityId",
+        component: SomeComponent,
         data: {
+            title: "Some title",
             description: "Some description"
         }
     }
@@ -12,6 +14,8 @@ Component Input binding in Angular Router
 
     ...
     export class SomeComponent {
+        @Input() entityId: string = ""
+        @Input() title: string = ""
         @Input() description: string = ""
     }
     ...
@@ -40,3 +44,10 @@ To enable it for NgModule approach check the below config
         })
     ]
 })
+
+
+If we have same name field across params, queryParams and data
+    Angular resolves it by assigning a priority to each
+        data => highest priority
+        params => intermediate priority
+        queryParams => least priority
