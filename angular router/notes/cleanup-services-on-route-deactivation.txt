@@ -2,3 +2,11 @@ How to PROPERLY Clean Up Angular Services on Route Deactivation
 
     If we provide any services in the providers array of any route, on route deactivation that service instance
     will still be on memory
+
+    check angular-environment-intializer-example folder for practical implementation
+
+        we achieve this in modern angular version (>21)
+
+            ...
+            providerRouter(routes,withExperimentalAutoCleanupInjector())
+            ...
