@@ -1,0 +1,19 @@
+Whenever we create service, if the constructor of the service performs some task
+    In that case service should be instantiated in any of our component to make the task defined 
+    inside the constructor to work
+
+    And in some case this service created will not be dependent to the component or its view where we are
+    planning to inject
+
+So here is the use case, we dont want to inject the service in any of our component but aslo need to instantiate it
+    we can achieve this by using provideEnvironmentInitializer() in app-config file
+
+    const appConfig: ApplicationConfig = {
+        providers: [
+            ...
+            provideEnvironmentInitializer(() => {
+                inject(Service)
+            })
+            ...
+        ]
+    }
