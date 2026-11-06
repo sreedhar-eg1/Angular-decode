@@ -1,0 +1,31 @@
+While creating dynamic component, we used to pass property using setInput()
+    ...
+    this.#componentRef.setInput('title', 'Some tilte')
+    ...
+
+But with newer angular version, we can make use of bindings property along with inputBinding() while creating
+the component itself
+    There is a catch that if we make use of inputBinding(), then we cant make use of setInput()
+    
+    ...
+    this.#componentRef = this.vcr().createComponent(WidgetComponent, {
+        bindings: [
+            inputBinding('title', () => 'Some Title')
+        ],
+        projectableNodes: [
+            contentView?.rootNodes!
+        ],
+    })
+    ...
+
+While using inputBinding(), if we are making use of signal we usually call them
+    But with inputBinding, we dont want to call them
+    
+    ...
+    count = signal(1)
+    count() => to access the value
+    ...
+
+    ...
+    inputBinding('count', this.count)
+    ...

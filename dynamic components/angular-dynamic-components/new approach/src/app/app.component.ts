@@ -1,4 +1,12 @@
-import { Component, ComponentRef, ElementRef, inject, TemplateRef, viewChild, ViewContainerRef } from "@angular/core";
+import {
+  Component,
+  ComponentRef,
+  ElementRef,
+  inject,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from "@angular/core";
 import { WidgetComponent } from "./widget/widget.component";
 import { WeatherContentComponent } from "./widget/weather-content.component";
 @Component({
@@ -13,8 +21,12 @@ import { WeatherContentComponent } from "./widget/weather-content.component";
     <main id="content">
       <ng-container #container></ng-container>
       <section class="toolbar">
-        <button (click)="createComponent()" class="create">Create Component</button>
-        <button (click)="destroyComponent()" class="destroy">Destroy Component</button>
+        <button (click)="createComponent()" class="create">
+          Create Component
+        </button>
+        <button (click)="destroyComponent()" class="destroy">
+          Destroy Component
+        </button>
       </section>
     </main>
   `,
@@ -30,9 +42,9 @@ export class AppComponent {
     this.#componentRef = this.vcr()?.createComponent(WidgetComponent, {
       projectableNodes: [
         contentView?.rootNodes!
-      ]
+      ],
     })
-    this.#componentRef?.setInput('title', 'Weather'); 
+    this.#componentRef?.setInput('title', 'Weather');
     this.#componentRef?.setInput('description', 'Currently in Vienna:');
 
     this.#componentRef?.instance.closed.subscribe(
