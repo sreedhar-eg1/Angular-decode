@@ -50,3 +50,19 @@ We have two way binding also (twoWayBinding())
         twoWayBinding('collapsed', signal reference)
     ]
 ...
+
+
+we can add directives to the dynamically created component using directives property
+...
+this.#componentRef = this.vcr().createComponent(WidgetComponent, {
+        bindings: [
+            inputBinding('title', () => 'Some Title')
+        ],
+        projectableNodes: [
+            contentView?.rootNodes!
+        ],
+        directives: [
+            withHoverEffect
+        ]
+})
+...
