@@ -29,3 +29,16 @@ While using inputBinding(), if we are making use of signal we usually call them
     ...
     inputBinding('count', this.count)
     ...
+
+
+For output event, we have outputBinding()
+
+    ...
+    bindings: [
+            inputBinding('title', () => 'Some Title'),
+            outputBinding('closed', () => {
+                this.#componentRef.destroy()
+                this.#componentRef = undefined
+            })
+    ],
+    ...
