@@ -42,3 +42,11 @@ For output event, we have outputBinding()
             })
     ],
     ...
+
+
+We have two way binding also (twoWayBinding())
+...
+    bindings: [
+        twoWayBinding('collapsed', signal reference)
+    ]
+...
