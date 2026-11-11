@@ -1,0 +1,20 @@
+Role of NgComponentOutlet directive
+    Alternative way to create dynamic component in angular
+
+Basicaly we create dynamic component by geeting the ViewContainerRef in which our dynamic component need to be
+injected
+    Additionaly we need to have a variable with componentRef<our component> type
+    dynamically created component is stored inside this variable
+
+        using this variable we can set input value or can listen for output event
+
+-----------------------------------------------------------
+
+With the help of NgComponentOutlet directive, we can avoid all the above steps and make it simpler
+...
+    protected component: Type<Any Component> = Any Component
+...
+
+...
+    <ng-container [ngComponentOutlet]="component"></ng-container>
+...
