@@ -56,3 +56,8 @@ LIMITATIONS OF USING NgComponentOutlet
 
     Limitation 3:
         With version older than 16.2, we ont be able to set/update input for the component
+
+
+-----------------------------------------------------------
+Real Life Usecase
+    Check angular-ng-component-outlet-reallife-usecase folder
