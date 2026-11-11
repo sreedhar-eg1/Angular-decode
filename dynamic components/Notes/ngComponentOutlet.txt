@@ -43,3 +43,16 @@ Content projection while using NgComponentOutlet
     ...
 
     Check the implementation in angular-ng-component-outlet folder
+
+
+-----------------------------------------------------------
+LIMITATIONS OF USING NgComponentOutlet
+    Limitation 1:
+        ngComponentOutlet can create only one dynamic component instance
+
+    Limitation 2:
+        Not possible to react to outputs event of the component created by ngComponentOutlet
+        In future, we wll be able to react to output events
+
+    Limitation 3:
+        With version older than 16.2, we ont be able to set/update input for the component
