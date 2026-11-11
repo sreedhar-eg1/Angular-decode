@@ -25,3 +25,21 @@ If we want to pass any value to the input property, we can achieve this like bel
             [ngComponentOutletInputs]="{title: 'Custom Widget Title', description: 'Custom Widget Description'}">
         </ng-container>
     ...
+
+
+-----------------------------------------------------------
+
+Content projection while using NgComponentOutlet
+
+    For content projection we need ViewContainerRef, we can get it by injecting ViewContainerRef
+        private vcr = inject(ViewContainerRef)
+
+    ...
+    <ng-container
+        [ngComponentOutlet]="component"
+        [ngComponentOutletInputs]="componentInputs"
+        [ngComponentOutletContent]="content"
+      ></ng-container>
+    ...
+
+    Check the implementation in angular-ng-component-outlet folder
