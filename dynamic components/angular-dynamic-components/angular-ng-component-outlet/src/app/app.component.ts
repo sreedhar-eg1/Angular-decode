@@ -16,7 +16,7 @@ import { NgComponentOutlet } from '@angular/common';
 
     <main id="content">
       <!-- <ng-container #container></ng-container> -->
-      <ng-container [ngComponentOutlet]="component"></ng-container>
+      <ng-container [ngComponentOutlet]="component" [ngComponentOutletInputs]="componentInputs"></ng-container>
       <section class="toolbar">
         <button (click)="createComponent()" class="create">
           Create Component
@@ -31,6 +31,10 @@ import { NgComponentOutlet } from '@angular/common';
 })
 export class AppComponent {
   protected component: Type<WidgetComponent> | null = null;
+  protected componentInputs = {
+    title: "Custom Widget Title",
+    description: "Custom Widget Description" 
+  }
 
   createComponent() {
     this.component = WidgetComponent;
