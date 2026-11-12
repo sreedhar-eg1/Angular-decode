@@ -13,3 +13,14 @@ There should be some place where all the error should end up
     There is global try catch wrapped within angular
         There is an injectable class class called ErrorHandler within angular, using this we can provide our
         own alternate global error handling along with useClass or useExisting
+
+---------------------------------------------------
+Here we need to keep a note that only uncaught exception will be handled by the global error handler
+    For example, If we handled the wrror in the component, then global error handler womt be reached
+
+    If we want to reach the global error handler, then we need to re-throw the error
+        ...
+        catch(error) {
+            ...
+            throw error
+        }

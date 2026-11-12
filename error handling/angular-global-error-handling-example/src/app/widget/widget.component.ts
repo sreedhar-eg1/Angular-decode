@@ -33,12 +33,13 @@ export class WidgetComponent implements OnInit {
 
   addTask() {
     // unreliable method
-    ({} as any).somemethod();
+    // ({} as any).somemethod();
     try {
       this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
     } catch (error) {
       if (error instanceof Error) {
         this.error = error;
+        throw error
       }
     }
   }
