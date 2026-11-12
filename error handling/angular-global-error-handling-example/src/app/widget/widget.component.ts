@@ -35,11 +35,12 @@ export class WidgetComponent implements OnInit {
     // unreliable method
     // ({} as any).somemethod();
     try {
-      this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
+      setTimeout(() => this.widgetData.addTaskSync({ id: 0, title: 'New Task' }), 0) // checking asynchronous error handling
+      // this.widgetData.addTaskSync({ id: 0, title: 'New Task' });
     } catch (error) {
       if (error instanceof Error) {
         this.error = error;
-        throw error
+        // throw error
       }
     }
   }

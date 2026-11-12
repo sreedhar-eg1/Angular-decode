@@ -24,3 +24,7 @@ Here we need to keep a note that only uncaught exception will be handled by the 
             ...
             throw error
         }
+
+
+---------------------------------------------------
+Exceptional handling in asynchronous or observable code
