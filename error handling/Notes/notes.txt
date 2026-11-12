@@ -1,0 +1,6 @@
+If the operation is synchronous, to catch error we can make use of classic try/catch approach
+    try {
+        ...
+    } catch(err) {
+        ...
+    }
