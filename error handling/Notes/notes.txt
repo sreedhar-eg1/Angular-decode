@@ -4,3 +4,12 @@ If the operation is synchronous, to catch error we can make use of classic try/c
     } catch(err) {
         ...
     }
+
+
+---------------------------------------------------
+There should be some place where all the error should end up
+    And angular has the place where all the error end up
+
+    There is global try catch wrapped within angular
+        There is an injectable class class called ErrorHandler within angular, using this we can provide our
+        own alternate global error handling along with useClass or useExisting
